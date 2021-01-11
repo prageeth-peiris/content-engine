@@ -1,0 +1,15 @@
+version: '3.0'
+
+services:
+
+   rs_system:
+     depends_on:
+       - redis_db
+     image: prageethatdocker/groveco_content_engine:1.0
+     ports:
+       - "5000:5000"
+     restart: always
+
+   redis_db:
+     image: redis
+     command: [sh, -c, "rm -f /data/dump.rdb && redis-server --save ''"]
